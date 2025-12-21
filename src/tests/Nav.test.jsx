@@ -1,18 +1,21 @@
 import { render, screen } from "@testing-library/react";
-import { getByText } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
+import { BrowserRouter } from "react-router";
+import userEvent from "@testing-library/user-event";
 import Nav from "../components/Nav";
-import { createMemoryRouter, RouterProvider } from "react-router";
-import routes from "../components/routes";
+import HomePage from "../components/HomePage";
 
-function renderRouter(){
-    const router = createMemoryRouter(routes)
-    render(<RouterProvider router ={router} />)
+function renderRouter(element){
+    render(
+        <BrowserRouter >
+            {element}
+        </BrowserRouter>
+    )
 }
 
 describe('test', ()=>{
     it('loads nav', ()=>{
-        renderRouter()
+        renderRouter(<Nav />)
         expect(screen.getByText(/shopping site/i)).toBeInTheDocument()
     })
 })
