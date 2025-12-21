@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import Nav from "../components/Nav";
 import HomePage from "../components/HomePage";
 import Shop from "../components/Shop";
+import Cart from "../components/Cart";
 
 function renderRouter(element){
     render(
@@ -22,5 +23,9 @@ describe('test', ()=>{
     it('loads Shop page', ()=>{
         renderRouter(<Shop/>)
         expect(screen.getByText(/lorem ipsum/i)).toBeInTheDocument()
+    })
+    it('loads Cart page', ()=>{
+        renderRouter(<Cart/>)
+        expect(screen.getByText(/quantity/i)).toBeInTheDocument()
     })
 })
