@@ -8,7 +8,10 @@ function App({path}) {
   return (
     <>
       <Nav />
-      <Outlet/>
+      <main>
+        <Outlet/>
+
+      </main>
     </>
   )
 }

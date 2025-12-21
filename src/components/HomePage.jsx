@@ -3,11 +3,11 @@ import Nav from "./Nav/Nav"
 
 export default function HomePage(){
     return (
-        <div>
+        <>
             <div>
                 <h1>SHOP</h1>
                 <Link to="/shop">Shop now</Link>
             </div>
-        </div>
+        </>
     )
 }
