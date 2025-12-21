@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router";
 import userEvent from "@testing-library/user-event";
 import Nav from "../components/Nav/Nav";
 import HomePage from "../components/HomePage";
-import Shop from "../components/Shop";
+import Shop from "../components/Shop/Shop";
 import Cart from "../components/Cart";
 
 function renderRouter(element){
