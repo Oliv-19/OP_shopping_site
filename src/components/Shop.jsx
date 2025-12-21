@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "./Nav/Nav";
 
 function Card(){
     return (
@@ -23,7 +23,6 @@ function Card(){
 export default function Shop(){
     return (
         <div>
-            <Nav />
             <div>
                 {<Card/>}
             </div>

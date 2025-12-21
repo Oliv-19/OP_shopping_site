@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { BrowserRouter } from "react-router";
 import userEvent from "@testing-library/user-event";
-import Nav from "../components/Nav";
+import Nav from "../components/Nav/Nav";
 import HomePage from "../components/HomePage";
 import Shop from "../components/Shop";
 import Cart from "../components/Cart";

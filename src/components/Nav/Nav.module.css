@@ -1,0 +1,21 @@
+nav{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 270px repeat(3, 120px) 1fr;
+    --purple: #3b2a40;
+}
+
+.link{
+    text-decoration: none;
+    color: var(--purple);
+    font-weight: bolder;
+    width: 80px;
+    font-size: 1rem;
+    /* border: #3b2a40 1px solid; */
+    text-align: center;
+    outline: 1px solid red;
+}
+.cartBtn{
+    justify-self: right;
+}

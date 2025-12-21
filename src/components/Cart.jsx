@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "./Nav/Nav";
 
 function Product(){
     return (
@@ -22,7 +22,7 @@ function Product(){
 export default function Cart(){
     return (
         <>
-            <Nav />
+            
             <div className="products">
                 <div className="titles">
                     <p>Product</p>
