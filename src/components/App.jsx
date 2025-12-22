@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { Outlet } from 'react-router'
 import Nav from './Nav/Nav'
+import { CartContext } from './Contexts'
 
-function App({path}) {
-  const [count, setCount] = useState(0)
+function App() {
+  const [cart, setCart] = useState([])
+
+  console.log(cart)
 
   return (
     <>
       <Nav />
       <main>
-        <Outlet/>
+        <CartContext value= {setCart}>
+          <Outlet />
+        </CartContext>
 
       </main>
     </>
