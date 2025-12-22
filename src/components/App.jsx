@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { useState } from 'react'
 import { Outlet } from 'react-router'
 import Nav from './Nav/Nav'
 import { CartContext } from './Contexts'
@@ -6,17 +6,14 @@ import { CartContext } from './Contexts'
 function App() {
   const [cart, setCart] = useState([])
 
-  console.log(cart)
-
   return (
     <>
-      <Nav />
-      <main>
-        <CartContext value= {setCart}>
+      <CartContext value={{cart, setCart}}>
+        <Nav />
+        <main>
           <Outlet />
-        </CartContext>
-
-      </main>
+        </main>
+      </CartContext>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import App from "./App"
-import Cart from "./Cart"
+import Cart from "./Cart/Cart"
 import ErrorPage from "./ErrorPage"
 import HomePage from "./HomePage"
 import Shop from "./Shop/Shop"

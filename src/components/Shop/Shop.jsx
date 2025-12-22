@@ -4,7 +4,7 @@ import styles from './Shop.module.css'
 import { CartContext } from "../Contexts";
 
 function Card(){
-    const setCart = useContext(CartContext)
+    const {setCart} = useContext(CartContext)
     const addToCart=()=>{
         setCart(prev=> [...prev, {name:'new'}])
         
