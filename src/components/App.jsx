@@ -1,19 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router'
 import Nav from './Nav/Nav'
-import { CartContext } from './Contexts'
+import { CartContext, ProductContext } from './Contexts'
 
 function App() {
   const [cart, setCart] = useState([])
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+        fetch('https://fakestoreapi.com/products')
+        .then(response => response.json())
+        .then(data => setProducts(data))
+    },[])
 
   return (
     <>
-      <CartContext value={{cart, setCart}}>
-        <Nav />
-        <main>
-          <Outlet />
-        </main>
-      </CartContext>
+      <ProductContext value={products}>
+        <CartContext value={{cart, setCart}}>
+          <Nav />
+            <Outlet />
+        </CartContext>
+      </ProductContext>
     </>
   )
 }

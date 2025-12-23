@@ -1,3 +1,9 @@
+
+.main{
+    --lighter-color: #dbd8d3;
+    --darker-color: #bdb9ae;
+    background-color: var(--darker-color);
+}
 .titles{
     display:  flex;
     /* gap: 35px; */
@@ -13,7 +19,6 @@
 }
 
 .products{
-    --lighter-color: #dbd8d3;
     width: 70%;
     padding: 10px 3%;
     font-size: 1rem;
@@ -23,6 +28,7 @@
     justify-items: center;
 }
 .product{
+    background-color: var(--lighter-color);
     justify-self: stretch;
     grid-column: 1/-1;
     background-color: #dbd8d3;

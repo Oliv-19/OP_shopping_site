@@ -28,8 +28,7 @@ export default function Cart(){
     const {cart} = useContext(CartContext)
 
     return (
-        <>
-            
+        <main className={styles.main}>
             <div className={styles.products}>
             
                 <p>Product</p>
@@ -53,6 +52,6 @@ export default function Cart(){
             <div>
 
             </div>
-        </>
+        </main>
     )
 }

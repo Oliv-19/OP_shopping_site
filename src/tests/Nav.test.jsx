@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import Nav from "../components/Nav/Nav";
 import HomePage from "../components/HomePage";
 import Shop from "../components/Shop/Shop";
-import Cart from "../components/Cart";
+import Cart from "../components/Cart/Cart";
 
 function renderRouter(element){
     render(
