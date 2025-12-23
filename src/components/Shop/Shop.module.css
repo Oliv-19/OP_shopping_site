@@ -1,57 +1,82 @@
 .main{
-    --bg-Color: #dbd8d3;
-    background-color: var(--bg-Color);
+    background-color: var(--lighter-color);
 }
 .shop{
     display: flex;
     flex-wrap: wrap;
-    gap: 70px;
-    padding: 0 100px;
+    gap: 20px 70px;
+    padding: 0 5rem;
     justify-content: space-around;
 }
 
 .card{
     width: 200px;
-    height: 250px;
-    /* outline: solid 1px red; */
+    height: fit-content;
     font-size: 1rem;
+    background-color: #f5f2ed;
+    padding: 0.5rem;
+    box-shadow: -5px 5px 12px #80734f;
+    border-radius: 0.25rem;
 }
 
 .imgWrapper{
     background-color: #aba395;
-    height: 80%;
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
 }
 
 .productText{
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    padding: 10px 0;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr fit-content;
+    padding: 0.75rem 0;
     font-family: "Caprasimo", serif;
     font-weight: lighter;
+    align-items: center;
+}
+.title{
+    grid-area: 1/1/2/3;
+    justify-self: left;
+    font-size: 0.8rem;
+    width: 90%;
+    height: 100%;
+    color: #575249;
+    display: -webkit-box;
+    max-width: 90%;
+    height: 2.5em;
+    line-height: 1.2em;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.price  {
+    font-size: 0.9rem;
+    color: #312911;
+}
+.addToCart, .removeFromCart{
+    justify-self: end;
+    grid-area: 2/2/3/3;
+    text-decoration: none;
+    cursor: pointer;
+    fill: var(--purple);
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: none;
 
 }
-.img{
-    height: 170px;
-    width: 170px;
-}
-.addToCart{
-    grid-area: 1/2/2/3;
-    appearance: none;
-    background-color: #80734f;
-    height: 50px;
-    width: 50px;
-    border: none;
-    border-radius: 50% 50% 0 0 ;
-    color: white;
-    cursor: pointer;
-    box-shadow: #554c33 -3px 3px 6px;
-}
-.addToCart:hover{
+.addToCart:hover, .removeFromCart{
     background-color: #554c33;
-    outline: 2px solid white;
+    fill: var(--white);
 }

@@ -4,6 +4,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    --purple: #3b2a40;
+    --white:#fafaff;
+    --lighter-color: #dbd8d3;
+    --darker-color: #bdb9ae;
 }
 body{
     font-family: monospace;
@@ -15,4 +19,7 @@ main{
 }
 h1{
     font-family: "Shadows Into Light", cursive;
+}
+svg{
+    height: 2rem;
 }

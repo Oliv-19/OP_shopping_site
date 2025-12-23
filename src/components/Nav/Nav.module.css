@@ -2,8 +2,6 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    --purple: #3b2a40;
-    --white:#fafaff;
     position: fixed;
     width: 100%;
     height: 15%;
