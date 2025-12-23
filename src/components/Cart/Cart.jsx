@@ -3,13 +3,15 @@ import { CartContext } from "../Contexts";
 import styles from './Cart.module.css'
 
 function Product({product}){
+    console.log(product);
+    
     return (
         <div className={styles.product}>
             <div className={styles.productInfo}>
                 <div className={styles.imgWrapper}>
                     <img src={null} alt="" />
                 </div>
-                <p className={styles.product_title}>Lorem ipsum</p>
+                <p className={styles.product_title}>{product.title}</p>
 
             </div>
             <p>$10</p>
@@ -26,7 +28,6 @@ function Product({product}){
 
 export default function Cart(){
     const {cart} = useContext(CartContext)
-
     return (
         <main className={styles.main}>
             <div className={styles.products}>
@@ -39,7 +40,7 @@ export default function Cart(){
                 
                 {cart.length > 0 ? (
                     <>
-                        {cart.map(product => <Product key={product.name} product= {product}/>)}
+                        {cart.map(product => <Product key={product.id} product= {product}/>)}
                     </>
                 ) : (
                     <>
