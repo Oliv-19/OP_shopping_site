@@ -6,7 +6,7 @@ function Product({product}){
     console.log(product);
     
     return (
-        <div className={styles.product}>
+        <div data-testId="cartProduct" className={styles.product}>
             <div className={styles.productInfo}>
                 <div className={styles.imgWrapper}>
                     <img src={null} alt="" />
