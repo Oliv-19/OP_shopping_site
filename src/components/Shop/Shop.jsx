@@ -14,7 +14,7 @@ function Card({product}){
         
     }
     const removeFromCart=()=>{
-        setCart(prev=> console.log(prev?.filter((p)=> p.id != product.id )))
+        setCart(prev=> prev?.filter((p)=> p.id != product.id ))
         setIsInCart(false)
         
     }

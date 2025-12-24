@@ -50,34 +50,36 @@ describe('Shop tests', ()=>{
         await user.click(button)
         expect(screen.queryByTestId('addToCart1')).toBe(null)
     })
-    it('calls addToCart function', async()=>{
+    it('adds item to cart when addToCart button is clicked', async()=>{
         const user = userEvent.setup()
-        const mockValue = {cart: [], setCart: vi.fn() }
+        const mockProduct = [{ id: 1, title: 'Test Item' }]
+        const mockValue = {cart: [], setCart: vi.fn((newItem)=> mockValue.cart =  newItem(mockValue.cart)) }
         renderRouter(
-            <ProductContext value={[{ id: 1, title: 'Test Item' }]}>
+            <ProductContext value={ mockProduct}>
                 <CartContext value={mockValue}>
                     <Shop/>
                 </CartContext>
             </ProductContext>
         )
-        const button = screen.getAllByTitle('Add to cart')
-        await user.click(button[0])
-        expect(mockValue.setCart).toHaveBeenCalled()
+        const button = screen.getByTestId('addToCart1')
+        await user.click(button)
+        expect(mockValue.cart).toEqual(mockProduct)
     })
-    it('calls removeFromCart function', async()=>{
+    it('remove item from cart when removeFromCart button is clicked', async()=>{
         const user = userEvent.setup()
-        const mockValue = {cart: [], setCart: vi.fn() }
+        const mockProduct = [{ id: 1, title: 'Test Item' }]
+        const mockValue = {cart: [], setCart: vi.fn((newItem)=> mockValue.cart =  newItem(mockValue.cart)) }
         renderRouter(
-            <ProductContext value={[{ id: 1, title: 'Test Item' }]}>
+            <ProductContext value={ mockProduct}>
                 <CartContext value={mockValue}>
                     <Shop/>
                 </CartContext>
             </ProductContext>
         )
-        const button = screen.getAllByTitle('Add to cart')
-        await user.click(button[0])
-        await user.click(button[0])
-        expect(mockValue.setCart).toHaveBeenCalled()
+        const button = screen.getByTestId('addToCart1')
+        await user.click(button)
+        await user.click(button)
+        expect(mockValue.cart).toEqual([])
     })
     
 })
