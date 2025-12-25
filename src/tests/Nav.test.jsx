@@ -3,12 +3,10 @@ import { describe, it, expect, vi} from "vitest";
 import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
 import Nav from "../components/Nav/Nav";
-import HomePage from "../components/HomePage";
 import Shop from "../components/Shop/Shop";
 import Cart from "../components/Cart/Cart";
 import { CartContext, ProductContext } from "../components/Contexts";
-import { Children, useContext } from "react";
-import App, { useCart } from "../components/App";
+import { useCart } from "../components/App";
 import routes from "../components/routes";
 
 function renderRouter(element){
@@ -63,6 +61,18 @@ describe('Shop tests', ()=>{
         expect(removeBtn).toBeInTheDocument()
 
     })
+})
+
+describe('Cart tests', ()=>{
+    it('loads Cart item', ()=>{
+        const mockValue = { cart: [{ id: 1, title: 'Test Item' }] }
+        renderRouter(
+            <CartContext value={mockValue}>
+                <Cart/>
+            </CartContext>
+        )
+        expect(screen.getByText(/test item/i)).toBeInTheDocument()
+    })
     it('adds item to cart when addToCart button is clicked', async()=>{
         const user = userEvent.setup()
         const router = createBrowserRouter(routes)
@@ -102,18 +112,6 @@ describe('Shop tests', ()=>{
         
 
         expect(cartProduct).not.toBeInTheDocument()
-    })
-})
-
-describe('Cart tests', ()=>{
-    it('loads Cart item', ()=>{
-        const mockValue = { cart: [{ id: 1, title: 'Test Item' }] }
-        renderRouter(
-            <CartContext value={mockValue}>
-                <Cart/>
-            </CartContext>
-        )
-        expect(screen.getByText(/test item/i)).toBeInTheDocument()
     })
     
 })

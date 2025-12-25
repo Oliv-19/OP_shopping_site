@@ -1,33 +1,34 @@
 import { useContext } from "react";
 import { CartContext } from "../Contexts";
 import styles from './Cart.module.css'
+import { Icon } from "../Shop/Shop";
 
-function Product({product}){
-    console.log(product);
-    
+function Product({product, removeFromCart}){
     return (
-        <div data-testId="cartProduct" className={styles.product}>
+        <div data-testid="cartProduct" className={styles.product}>
             <div className={styles.productInfo}>
                 <div className={styles.imgWrapper}>
-                    <img src={null} alt="" />
+                    <img className={styles.img} src={product.image} alt="" />
                 </div>
-                <p className={styles.product_title}>{product.title}</p>
+                <p className={styles.product_title} title={product.title}>{product.title}</p>
 
             </div>
-            <p>$10</p>
+            <p>{`$${product.price}`}</p>
             <div className={styles.quantity}>
                 <button>-</button>
                 <p>1</p>
                 <button>+</button>
             </div>
-            <p>$10</p>
-            <button>delete</button>
+            <p>{`$${product.price}`}</p>
+            <button className={styles.removeFromCart} onClick={() => removeFromCart()} >
+                <Icon title='removeFromCart' />
+            </button>
         </div>
     )
 }
 
 export default function Cart(){
-    const {cart} = useContext(CartContext)
+    const cart = useContext(CartContext)
     return (
         <main className={styles.main}>
             <div className={styles.products}>
@@ -38,9 +39,9 @@ export default function Cart(){
                 <p>Total</p>
                 <p>Delete</p>
                 
-                {cart.length > 0 ? (
+                {cart.cart.length > 0 ? (
                     <>
-                        {cart.map(product => <Product key={product.id} product= {product}/>)}
+                        {cart.cart.map(product => <Product key={product.id} product= {product} removeFromCart= {cart.removeFromCart}/>)}
                     </>
                 ) : (
                     <>

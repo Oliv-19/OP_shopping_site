@@ -6,11 +6,11 @@ import { CartContext, ProductContext } from './Contexts'
 export const useCart = () =>{
   const [cart, setCart] = useState([])
   const addToCart=(product)=>{
-        setCart(prev=> [...prev, product])
-    }
-    const removeFromCart=(product)=>{
-        setCart(prev=> prev?.filter((p)=> p.id != product.id ))
-    }
+    setCart(prev=> [...prev, product])
+  }
+  const removeFromCart=(product)=>{
+    setCart(prev=> prev?.filter((p)=> p.id != product.id ))
+  }
   return {cart, addToCart, removeFromCart}
 }
 
