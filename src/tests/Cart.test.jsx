@@ -11,9 +11,9 @@ import { useState } from "react";
 
 describe('Cart tests', ()=>{
     const Wrapper = ({children, initialValue})=>{
-        const [cart, setCart] = useState(initialValue? [initialValue]: [])
-        const addToCart = (item) => setCart((prev) => [...prev, item]) 
-        const removeFromCart = (product) => setCart((prev) => prev.filter((p) => p.id !== product.id))
+        const [cart, setCart] = useState(initialValue? [{product: initialValue, quantity: 1}]: [])
+        const addToCart = (item) => setCart((prev) => [...prev, {product:item, quantity: 1}]) 
+        const removeFromCart = (id) => setCart((prev) => prev.filter((p) => p.product.id !== id))
         return (
             <CartContext  value={{cart, addToCart, removeFromCart}}>
                 {children}

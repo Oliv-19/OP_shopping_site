@@ -6,12 +6,18 @@ import { CartContext, ProductContext } from './Contexts'
 export const useCart = () =>{
   const [cart, setCart] = useState([])
   const addToCart=(product)=>{
-    setCart(prev=> [...prev, product])
+    setCart(prev=> [...prev, {product, quantity: 1}])
   }
-  const removeFromCart=(product)=>{
-    setCart(prev=> prev?.filter((p)=> p.id != product.id ))
+  const removeFromCart=(id)=>{
+    setCart(prev=> prev?.filter((p)=> p.product.id != id ))
   }
-  return {cart, addToCart, removeFromCart}
+  const incrementQuantity= (id)=>{
+    setCart(prev => prev.map(p => p.product.id == id ? {product:{...p.product}, quantity: p.quantity+1 }: p))
+  }
+  const decrementQuantity= (id)=>{
+    setCart(prev => prev.map(p => p.product.id == id ? (p.quantity > 1 ? {product:{...p.product}, quantity: p.quantity-1 } : p) : p))
+  }
+  return {cart, addToCart, removeFromCart, incrementQuantity, decrementQuantity}
 }
 
 function App() {

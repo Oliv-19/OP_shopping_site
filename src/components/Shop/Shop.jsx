@@ -58,7 +58,7 @@ export default function Shop(){
             <div className={styles.shop}>
                 {products && 
                 products.map(p => {
-                    const isInCart = cart.cart?.includes(p)
+                    const isInCart = cart.cart?.find(product=> product.product.id == p.id )
                     return <Card key={p.title} product={p} addToCart={cart.addToCart} removeFromCart= {cart.removeFromCart} isInCart={isInCart} />
                 })}
             </div>
