@@ -20,7 +20,7 @@ function Product({product, removeFromCart}){
                 <button>+</button>
             </div>
             <p>{`$${product.price}`}</p>
-            <button className={styles.removeFromCart} onClick={() => removeFromCart()} >
+            <button data-testid="deleteBtn" className={styles.removeFromCart} onClick={() => removeFromCart(product)} >
                 <Icon title='removeFromCart' />
             </button>
         </div>
