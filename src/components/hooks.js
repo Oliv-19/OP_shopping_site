@@ -1,5 +1,4 @@
 import {useEffect, useState } from 'react'
-import { useCart } from './hooks'
 
 export const useCart = () =>{
   const [cart, setCart] = useState([])
