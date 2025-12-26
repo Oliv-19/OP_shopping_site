@@ -3,7 +3,6 @@ import { describe, it, expect, vi} from "vitest";
 import userEvent from "@testing-library/user-event";
 import Cart from "../components/Cart/Cart";
 import { CartContext } from "../components/Contexts";
-import { useCart } from "../components/App";
 import { renderRouter } from "./Nav.test";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import routes from "../components/routes";
@@ -57,7 +56,7 @@ describe('Cart tests', ()=>{
         )
 
         await user.click(screen.getByTestId('shop'))
-        const addBtn = await screen.findByTestId('addToCart1')
+        const addBtn = await waitFor(() => screen.findByTestId('addToCart1'), {timeout:2000}) 
         expect(addBtn).toBeInTheDocument()
         await user.click(addBtn)
         const cartBtn =  screen.getByTestId('cart')
@@ -75,7 +74,7 @@ describe('Cart tests', ()=>{
         )
 
         await user.click(screen.getByTestId('shop'))
-        const addBtn = await screen.findByTestId('addToCart1')
+        const addBtn = await waitFor(() => screen.findByTestId('addToCart1'), {timeout:2000}) 
         expect(addBtn).toBeInTheDocument()
         await user.click(addBtn)
         const cartBtn =  screen.getByTestId('cart')

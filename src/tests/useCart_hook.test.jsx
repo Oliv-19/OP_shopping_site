@@ -1,6 +1,6 @@
 import { renderHook, act} from "@testing-library/react";
 import { describe, it, expect, vi} from "vitest";
-import { useCart } from "../components/App";
+import { useCart } from "../components/hooks";
 
 describe('useCart hook tests', ()=>{
     it('initial state should be empty', ()=>{

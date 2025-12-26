@@ -43,7 +43,7 @@ function Card({product, isInCart, addToCart, removeFromCart}){
                 <p className={styles.title} title={product.title}>{product.title}</p>
                 <p className={styles.price} >{`$${product.price}`}</p>
                     {isInCart?(
-                        <button data-testid={`removeFromCart${product.id}`} onClick={()=> removeFromCart(product)} className={styles.removeFromCart} title={isInCart ? 'Remove from cart' : 'Add to cart'}>
+                        <button data-testid={`removeFromCart${product.id}`} onClick={()=> removeFromCart(product.id)} className={styles.removeFromCart} title={isInCart ? 'Remove from cart' : 'Add to cart'}>
                             <Icon title= 'removeFromCart' />
                         </button>
                     ):(
