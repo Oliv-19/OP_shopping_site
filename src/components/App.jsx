@@ -5,6 +5,17 @@ import { CartContext, ProductContext } from './Contexts'
 
 export const useCart = () =>{
   const [cart, setCart] = useState([])
+
+  
+  const totalPerProduct = (id) =>{
+    const product = cart.find(p => p.product.id == id)
+    return Number(product.product.price) * product.quantity
+  }
+  
+  let total = cart.length < 1 ? 0
+  : cart.reduce((prev, curr)=> 
+    prev + totalPerProduct(curr.product.id), 0) 
+
   const addToCart=(product)=>{
     setCart(prev=> [...prev, {product, quantity: 1}])
   }
@@ -17,7 +28,15 @@ export const useCart = () =>{
   const decrementQuantity= (id)=>{
     setCart(prev => prev.map(p => p.product.id == id ? (p.quantity > 1 ? {product:{...p.product}, quantity: p.quantity-1 } : p) : p))
   }
-  return {cart, addToCart, removeFromCart, incrementQuantity, decrementQuantity}
+  return {
+    cart, 
+    total,
+    totalPerProduct,
+    addToCart, 
+    removeFromCart, 
+    incrementQuantity, 
+    decrementQuantity
+  }
 }
 
 function App() {

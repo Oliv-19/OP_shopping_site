@@ -37,7 +37,7 @@ describe('useCart hook tests', ()=>{
         )
         expect(result.current.cart).toEqual([{product:{ id: 1, title: 'Test Item' }, quantity: 2}])
     })
-     it('decrements quantity', ()=>{
+    it('decrements quantity', ()=>{
         const {result} = renderHook(()=> useCart())
         act(()=>  
             result.current.addToCart({ id: 1, title: 'Test Item' })
@@ -49,6 +49,33 @@ describe('useCart hook tests', ()=>{
             result.current.decrementQuantity(1)    
         )
         expect(result.current.cart).toEqual([{product:{ id: 1, title: 'Test Item' }, quantity: 1}])
+    })
+    it('calculates total price per product quantity', ()=>{
+        const {result} = renderHook(()=> useCart())
+        act(()=>  
+            result.current.addToCart({ id: 1, title: 'Test Item', price: 2})
+        )
+        act(()=>  
+            result.current.incrementQuantity(1)
+        )
+        expect(result.current.totalPerProduct(1)).toBe(4)
+    })
+    it('calculates total', ()=>{
+        const {result} = renderHook(()=> useCart())
+        act(()=>  
+            result.current.addToCart({ id: 1, title: 'Test Item', price: 2})
+        )
+        act(()=>  
+            result.current.addToCart({ id: 2, title: 'Test Item 2', price: 2})
+        )
+        expect(result.current.total).toBe(4)
+    })
+    it('calculates total of one item', ()=>{
+        const {result} = renderHook(()=> useCart())
+        act(()=>  
+            result.current.addToCart({ id: 1, title: 'Test Item', price: 2})
+        )
+        expect(result.current.total).toBe(2)
     })
     
 })
