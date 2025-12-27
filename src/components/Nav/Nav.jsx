@@ -18,12 +18,12 @@ export default function Nav(){
     return (
         <nav ref={navRef}>
             <h1>Shopping site</h1>
-            <Link to='/' className={`${styles.link} ${pathname === '/' && styles.active} `}>Home</Link>
-            <Link data-testid = "shop" to='/shop' className={`${styles.link} ${pathname === '/shop' && styles.active} `}>Shop</Link>
-            <Link to='/contactUs' className={`${styles.link} ${pathname === '/contactUs' && styles.active}`}>Contact us</Link>
-            <Link data-testid = "cart"  to='/cart' className={`${styles.link} ${pathname === '/cart' && styles.active}`}>
+            <Link to='/' className={`${styles.link} ${pathname === '/' ? styles.active : ''} `}>Home</Link>
+            <Link data-testid = "shop" to='/shop' className={`${styles.link} ${pathname === '/shop' ? styles.active : ''} `}>Shop</Link>
+            <Link to='/contactUs' className={`${styles.link} ${pathname === '/contactUs' ? styles.active : ''}`}>Contact us</Link>
+            <Link data-testid = "cart"  to='/cart' data-count={cart.amount} className={`${styles.link} ${pathname === '/cart' ? styles.active : ''}`}>
                 <Icon title='cart'/>
-                <span data-testid='amount'>{cart.amount}</span>
+                
             </Link>
         </nav>
     )
