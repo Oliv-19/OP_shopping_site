@@ -3,12 +3,12 @@ import { describe, it, expect, vi} from "vitest";
 import userEvent from "@testing-library/user-event";
 import Shop from "../components/Shop/Shop";
 import { CartContext, ProductContext } from "../components/Contexts";
-import { useCart } from "../components/hooks";
 import { renderRouter } from "./Nav.test";
+import { useMockHook } from "./Cart.test";
 
 describe('Shop tests', ()=>{
     const Wrapper = ({children})=>{
-        const cart = useCart()
+        const cart = useMockHook()
         return (
             <CartContext  value={cart}>
                 {children}
@@ -16,12 +16,11 @@ describe('Shop tests', ()=>{
         )
     }
     it('loads Shop products', ()=>{
-        const mockValue = {cart : [], setCart: vi.fn() }
         renderRouter(
             <ProductContext value={[{ id: 1, title: 'Test Item' }]}>
-                <CartContext value={mockValue}>
+                <Wrapper >
                     <Shop/>
-                </CartContext>
+                </Wrapper>
             </ProductContext>
         )
         expect(screen.getByText(/test item/i)).toBeInTheDocument()

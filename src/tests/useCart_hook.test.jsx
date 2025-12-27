@@ -77,5 +77,26 @@ describe('useCart hook tests', ()=>{
         )
         expect(result.current.total).toBe(2)
     })
+    it('calculates the amount of items in the cart', ()=>{
+        const {result} = renderHook(()=> useCart())
+        act(()=>  
+            result.current.addToCart({ id: 1, title: 'Test Item', price: 2})
+        )
+        expect(result.current.amount).toBe(1)
+    })
+    it('calculates the amount of items in the cart 2', ()=>{
+        const {result} = renderHook(()=> useCart())
+        act(()=>  
+            result.current.addToCart({ id: 1, title: 'Test Item', price: 2})
+        )
+        act(()=>  
+            result.current.incrementQuantity(1)
+        )
+        expect(result.current.amount).toBe(2) 
+    })
+    it('returns 0 when the cart is empty', ()=>{
+        const {result} = renderHook(()=> useCart())
+        expect(result.current.amount).toBe(0) 
+    })
     
 })

@@ -8,26 +8,36 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import routes from "../components/routes";
 import { useState } from "react";
 
+export const useMockHook = (initialValue)=>{
+    const [cart, setCart] = useState(initialValue? [{product: initialValue, quantity: 1}]: [])
+    const addToCart = (item) => setCart((prev) => [...prev, {product:item, quantity: 1}]) 
+    const removeFromCart = (id) => setCart((prev) => prev.filter((p) => p.product.id !== id))
+    const totalPerProduct = (id) =>{
+        const product = cart.find(p => p.product.id == id)
+        return Number(product.product.price) * product.quantity
+    }
+    let total = cart.length < 1 ? 0
+    : cart.reduce((prev, curr)=> 
+        prev + totalPerProduct(curr.product.id), 0)  
+
+    let amount = cart.reduce((prev, curr)=>
+      prev + curr.quantity
+    , 0)
+
+    const incrementQuantity= (id)=>{
+        setCart(prev => prev.map(p => p.product.id == id ? {product:{...p.product}, quantity: p.quantity+1 }: p))
+    }
+    const decrementQuantity= (id)=>{
+        setCart(prev => prev.map(p => p.product.id == id ? (p.quantity > 1 ? {product:{...p.product}, quantity: p.quantity-1 } : p) : p))
+    }
+    return {cart, amount, addToCart, removeFromCart, totalPerProduct, total, incrementQuantity, decrementQuantity}
+}
+
 describe('Cart tests', ()=>{
     const Wrapper = ({children, initialValue})=>{
-        const [cart, setCart] = useState(initialValue? [{product: initialValue, quantity: 1}]: [])
-        const addToCart = (item) => setCart((prev) => [...prev, {product:item, quantity: 1}]) 
-        const removeFromCart = (id) => setCart((prev) => prev.filter((p) => p.product.id !== id))
-        const totalPerProduct = (id) =>{
-            const product = cart.find(p => p.product.id == id)
-            return Number(product.product.price) * product.quantity
-        }
-        let total = cart.length < 1 ? 0
-        : cart.reduce((prev, curr)=> 
-            prev + totalPerProduct(curr.product.id), 0)  
-        const incrementQuantity= (id)=>{
-            setCart(prev => prev.map(p => p.product.id == id ? {product:{...p.product}, quantity: p.quantity+1 }: p))
-        }
-        const decrementQuantity= (id)=>{
-            setCart(prev => prev.map(p => p.product.id == id ? (p.quantity > 1 ? {product:{...p.product}, quantity: p.quantity-1 } : p) : p))
-        }
+        const cartHook = useMockHook(initialValue)
         return (
-            <CartContext  value={{cart, addToCart, removeFromCart, total, totalPerProduct, incrementQuantity, decrementQuantity}}>
+            <CartContext  value={cartHook}>
                 {children}
             </CartContext>
         )
@@ -71,7 +81,7 @@ describe('Cart tests', ()=>{
         const router = createBrowserRouter(routes)
         render(
             <RouterProvider router = {router} />
-        )
+        ) 
 
         await user.click(screen.getByTestId('shop'))
         const addBtn = await waitFor(() => screen.findByTestId('addToCart1'), {timeout:2000}) 

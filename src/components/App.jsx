@@ -14,7 +14,6 @@ function App() {
         .then(data => setProducts(data))
         .catch(error => error)
     },[])
-
   return (
     <>
       <ProductContext value={products}>

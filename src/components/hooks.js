@@ -3,7 +3,10 @@ import {useEffect, useState } from 'react'
 export const useCart = () =>{
   const [cart, setCart] = useState([])
 
-  
+  let amount = cart.reduce((prev, curr)=>
+      prev + curr.quantity
+    , 0)
+
   const totalPerProduct = (id) =>{
     const product = cart.find(p => p.product.id == id)
     return Number(product.product.price) * product.quantity
@@ -28,6 +31,7 @@ export const useCart = () =>{
   return {
     cart, 
     total,
+    amount,
     totalPerProduct,
     addToCart, 
     removeFromCart, 
