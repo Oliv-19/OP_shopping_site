@@ -7,25 +7,29 @@ nav{
     height: 12vh;
     background-color: transparent;
     transition: background-color 0.2s ease;
+    z-index: 10;
+}
+nav > h1{
+    color: var(--purple);
 }
 
 .link{
     text-decoration: none;
     color: var(--purple);
     font-weight: bolder;
-    width: 100px;
+    width: 110px;
     font-size: 1rem;
     text-align: center;
     padding: 10px 0 ;
     border-radius: 17px;
     fill: var(--purple);
     position:relative;
-    outline: 0.15rem solid #3b2a4094;
+    border: 0.15rem solid #3b2a4094;
     transition-property:  background-color, color, fill, outline, box-shadow;
     transition-duration:0.3s;
     transition-timing-function: ease;
 }
-.link[data-testid]{
+.link[data-testid ='cart']{
     width: 80px;
     padding: 0;
     height: 40px;

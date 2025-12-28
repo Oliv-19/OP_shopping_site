@@ -1,7 +1,7 @@
 import App from "./App"
 import Cart from "./Cart/Cart"
 import ErrorPage from "./ErrorPage"
-import HomePage from "./HomePage"
+import HomePage from "./HomePage/HomePage"
 import Shop from "./Shop/Shop"
 
 const routes = [
