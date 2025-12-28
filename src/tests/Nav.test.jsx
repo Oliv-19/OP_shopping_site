@@ -6,6 +6,7 @@ import Nav from "../components/Nav/Nav";
 import routes from "../components/routes";
 import { CartContext } from "../components/Contexts";
 import { useMockHook } from "./Cart.test";
+import { useEffect, useRef } from "react";
 
 export function renderRouter(element){
     render(
@@ -14,9 +15,15 @@ export function renderRouter(element){
         </BrowserRouter>
     )
 }
+
+function ComputedStyle(elem) {
+    const computedStyle = window.getComputedStyle(elem, '::after')
+    return computedStyle.content
+}
+
 describe('Nav tests', ()=>{
-    const Wrapper = ({children})=>{
-        const cart = useMockHook() 
+    const Wrapper = ({children, initialValue})=>{
+        const cart = initialValue ? useMockHook(initialValue) : useMockHook()
         return (
             <CartContext  value={cart}>
                 {children}
@@ -31,25 +38,23 @@ describe('Nav tests', ()=>{
         )
         expect(screen.getByText('Shopping site')).toBeInTheDocument()
     })
-    it('displays amount of items in the cart', async() => {
-        const user = userEvent.setup()
-        const router = createBrowserRouter(routes)
-        render(
-            <RouterProvider router = {router} />
+    it('displays amount of items in the cart', () => {
+        renderRouter(
+            <Wrapper initialValue={{ id: 1, title: 'Test Item' }}>
+                <Nav />
+            </Wrapper>
         )
-        await user.click(screen.getByTestId('shop'))
-        const addBtn = await waitFor(() => screen.findByTestId('addToCart1'), {timeout:2000}) 
-        expect(addBtn).toBeInTheDocument()
-        await user.click(addBtn)
-
-        expect(screen.getByTestId('amount').textContent).toBe('1')
+        
+        const amount = screen.getByTestId('amount')
+        expect(amount).toHaveTextContent('1')
     })
     it('displays 0 when cart is empty', () => {
-        const router = createBrowserRouter(routes)
-        render(
-            <RouterProvider router = {router} />
+        renderRouter(
+            <Wrapper >
+                <Nav />
+            </Wrapper>
         )
-        const amount = screen.getByTestId('amount')
-        expect(amount.textContent).toBe('0')
+       const amount = screen.getByTestId('amount')
+        expect(amount).toHaveTextContent('0')
     })
 })

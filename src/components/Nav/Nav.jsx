@@ -21,9 +21,9 @@ export default function Nav(){
             <Link to='/' className={`${styles.link} ${pathname === '/' ? styles.active : ''} `}>Home</Link>
             <Link data-testid = "shop" to='/shop' className={`${styles.link} ${pathname === '/shop' ? styles.active : ''} `}>Shop</Link>
             <Link to='/contactUs' className={`${styles.link} ${pathname === '/contactUs' ? styles.active : ''}`}>Contact us</Link>
-            <Link data-testid = "cart"  to='/cart' data-count={cart.amount} className={`${styles.link} ${pathname === '/cart' ? styles.active : ''}`}>
+            <Link data-testid = "cart"  to='/cart'  className={`${styles.link} ${pathname === '/cart' ? styles.active : ''}`}>
                 <Icon title='cart'/>
-                
+                <span data-testid= 'amount' className={styles.dataCount}>{cart.amount}</span>
             </Link>
         </nav>
     )
