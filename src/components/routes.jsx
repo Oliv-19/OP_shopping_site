@@ -1,8 +1,9 @@
 import App from "./App"
 import Cart from "./Cart/Cart"
-import ErrorPage from "./ErrorPage"
+import ErrorPage from "./ErrorPage/ErrorPage"
 import HomePage from "./HomePage/HomePage"
 import Shop from "./Shop/Shop"
+import { Contact } from "./Contact"
 
 const routes = [
     {
