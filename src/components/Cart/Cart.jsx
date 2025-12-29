@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../Contexts";
 import styles from './Cart.module.css'
 import { Icon } from "../Shop/Shop";
@@ -8,7 +8,7 @@ function Product({product, removeFromCart, decrementQuantity, incrementQuantity,
         <div data-testid="cartProduct" className={styles.product}>
             <div className={styles.productInfo}>
                 <div className={styles.imgWrapper}>
-                    <img className={styles.img} src={product.product.image} alt="" />
+                    <img className={styles.img} src={product.product.images[0]} alt="" />
                 </div>
                 <p className={styles.product_title} title={product.product.title}>{product.product.title}</p>
 

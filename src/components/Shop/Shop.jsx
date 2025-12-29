@@ -1,8 +1,6 @@
 import { useContext} from "react";
-import Nav from "../Nav/Nav";
 import styles from './Shop.module.css'
 import { CartContext, ProductContext } from "../Contexts";
-import { useState } from "react";
 
 export function Icon({title}){
     if(title == "addToCart"){
@@ -43,17 +41,17 @@ function Card({product, isInCart, addToCart, removeFromCart}){
     return (
         <div className={styles.card}>
             <div className={styles.imgWrapper}>
-                <img src={product.image} alt="" className={styles.img}/>
+                <img src={product.images[0]} alt="" className={styles.img}/>
             </div>
             <div className={styles.productText}>
                 <p className={styles.title} title={product.title}>{product.title}</p>
-                <p className={styles.price} >{`$${product.price}`}</p>
+                <p className={styles.price} >{`$${product.price.toFixed(2)}`}</p>
                     {isInCart?(
-                        <button data-testid={`removeFromCart${product.id}`} onClick={()=> removeFromCart(product.id)} className={styles.removeFromCart} title={isInCart ? 'Remove from cart' : 'Add to cart'}>
+                        <button data-testid={`removeFromCart${product.id}`} onClick={()=> removeFromCart(product.id)} className={styles.removeFromCart} title= 'Remove from cart' >
                             <Icon title= 'removeFromCart' />
                         </button>
                     ):(
-                        <button data-testid={`addToCart${product.id}`} onClick={() => addToCart(product)} className={styles.addToCart} title={isInCart ? 'Remove from cart' : 'Add to cart'}>
+                        <button data-testid={`addToCart${product.id}`} onClick={() => addToCart(product)} className={styles.addToCart} title='Add to cart'>
                             <Icon title= 'addToCart' />
                         </button>
                     )}

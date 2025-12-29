@@ -4,9 +4,9 @@
 .shop{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px 70px;
+    gap: 20px 6.89rem;
     padding: 0 5rem;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 .card{
