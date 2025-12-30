@@ -1,2 +1,2 @@
 A store site build with React
-Live Demo: https://opshoppingsite.netlify.app/shop
+Live Demo: https://opshoppingsite.vercel.app
