@@ -14,8 +14,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5rem;
+    gap: 2rem;
     align-items: center;
+    padding-top: 10%;
 }
 .title > h1 {
     font-size: 8rem;
@@ -26,12 +27,23 @@
     color: var(--purple);
     font-size: 1.5rem;
 }
+.title> p{
+    font-size: 0.8rem;
+    color: var(--purple);
+    margin-top: 10rem;
+    height: fit-content;
+}
+.title> p> a{
+    font-size: 0.8rem;
+    color: var(--purple);
+}
 
 .imgWrapper{
     position: relative;
     width: 60%;
     padding-top: 1.65rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }

@@ -8,15 +8,21 @@
 .main > h1{
     font-size: 3.5rem;
 }
-.form{
+.box{
     composes: errorBox from '../ErrorPage/ErrorPage.module.css';
-    height: fit-content;
     padding: 1rem 0;
+    height: 50vh;
+    box-shadow:0px 3px 8px 0px #837447;
+}
+.box> h1{
+    font-size: 2rem;
+}
+.form{
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-items: center;
-    box-shadow:0px 3px 8px 0px #837447;
+    
 }
 .form > label, .textareaLabel{
     font-size: 0.8rem;
