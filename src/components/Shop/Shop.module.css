@@ -1,5 +1,6 @@
 .main{
     background-color: var(--lighter-color);
+    min-height: 100vh;
 }
 .shop{
     display: flex;

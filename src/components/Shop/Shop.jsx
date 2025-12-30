@@ -1,6 +1,6 @@
 import { useContext} from "react";
 import styles from './Shop.module.css'
-import { CartContext, ProductContext } from "../Contexts";
+import { CartContext, LoadingContext, ProductContext } from "../Contexts";
 
 export function Icon({title}){
     if(title == "addToCart"){
@@ -41,7 +41,7 @@ function Card({product, isInCart, addToCart, removeFromCart}){
     return (
         <div className={styles.card}>
             <div className={styles.imgWrapper}>
-                <img src={product.images[0]} alt="" className={styles.img}/>
+                <img src={product.image} alt="" className={styles.img} loading="lazy"/>
             </div>
             <div className={styles.productText}>
                 <p className={styles.title} title={product.title}>{product.title}</p>
@@ -61,13 +61,24 @@ function Card({product, isInCart, addToCart, removeFromCart}){
 }
 
 export default function Shop(){
-    const products = useContext(ProductContext)
+    const isLoading= useContext(LoadingContext)
+    const products= useContext(ProductContext)
     const cart = useContext(CartContext)
+    if(isLoading){
+        return(
+            <main className={styles.main}>
+                <div className={styles.shop}>
+
+                </div>
+            </main>
+        )
+    }
+
     return (
        <main className={styles.main}>
             <div className={styles.shop}>
                 {products && 
-                products.map(p => {
+                products.map((p )=> {
                     const isInCart = cart.cart?.find(product=> product.product.id == p.id )
                     return <Card key={p.title} product={p} addToCart={cart.addToCart} removeFromCart= {cart.removeFromCart} isInCart={isInCart} />
                 })}

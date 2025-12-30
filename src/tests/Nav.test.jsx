@@ -21,7 +21,7 @@ function ComputedStyle(elem) {
     return computedStyle.content
 }
 
-describe('Nav tests', ()=>{
+describe('Nav tests', ()=>{ 
     const Wrapper = ({children, initialValue})=>{
         const cart = initialValue ? useMockHook(initialValue) : useMockHook()
         return (

@@ -18,7 +18,7 @@ export const useMockHook = (initialValue)=>{
     }
     let total = cart.length < 1 ? 0
     : cart.reduce((prev, curr)=> 
-        prev + totalPerProduct(curr.product.id), 0)  
+        prev + totalPerProduct(curr.product.id), 0) 
 
     let amount = cart.reduce((prev, curr)=>
       prev + curr.quantity

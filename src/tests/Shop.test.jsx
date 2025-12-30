@@ -2,7 +2,7 @@ import {screen, waitFor} from "@testing-library/react";
 import { describe, it, expect, vi} from "vitest";
 import userEvent from "@testing-library/user-event";
 import Shop from "../components/Shop/Shop";
-import { CartContext, ProductContext } from "../components/Contexts";
+import { CartContext, LoadingContext, ProductContext } from "../components/Contexts";
 import { renderRouter } from "./Nav.test";
 import { useMockHook } from "./Cart.test";
 
@@ -10,31 +10,31 @@ describe('Shop tests', ()=>{
     const Wrapper = ({children})=>{
         const cart = useMockHook()
         return (
-            <CartContext  value={cart}>
-                {children}
-            </CartContext>
+            <LoadingContext value={false}>
+                <ProductContext value={[{ id: 1, title: 'Test Item', price:1 }]}>
+                    <CartContext  value={cart}>
+                        {children}
+                    </CartContext>
+                </ProductContext>
+            </LoadingContext>
         )
     }
     it('loads Shop products', ()=>{
         renderRouter(
-            <ProductContext value={[{ id: 1, title: 'Test Item' }]}>
-                <Wrapper >
-                    <Shop/>
-                </Wrapper>
-            </ProductContext>
+             <Wrapper >
+                <Shop/>
+            </Wrapper>
         )
-        expect(screen.getByText(/test item/i)).toBeInTheDocument()
+        expect(screen.getByText('Test Item')).toBeInTheDocument()
     })
     it('replaces addToCart button for removeFromCart button on click', async()=>{
         const user = userEvent.setup()
         renderRouter(
-            <ProductContext value={[{ id: 1, title: 'Test Item' }]}>
-                <Wrapper  >
-                    <Shop/>
-                </Wrapper> 
-            </ProductContext>
+            <Wrapper  >
+                <Shop/>
+            </Wrapper> 
         ) 
-        const button = screen.getByTestId('addToCart1')
+        const button = await screen.findByTestId('addToCart1')
         expect(button).toBeInTheDocument()
         await user.click(button)
         const removeBtn = await screen.findByTestId('removeFromCart1')
@@ -44,11 +44,9 @@ describe('Shop tests', ()=>{
     it('replaces removeFromCart button for addToCart button on click', async()=>{
         const user = userEvent.setup()
         renderRouter(
-            <ProductContext value={[{ id: 1, title: 'Test Item' }]}>
-                <Wrapper  >
-                    <Shop/>
-                </Wrapper> 
-            </ProductContext>
+            <Wrapper  >
+                <Shop/>
+            </Wrapper> 
         ) 
         const button = screen.getByTestId('addToCart1')
         expect(button).toBeInTheDocument()

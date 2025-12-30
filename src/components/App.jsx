@@ -1,27 +1,37 @@
 import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router'
 import Nav from './Nav/Nav'
-import { CartContext, ProductContext } from './Contexts'
+import { CartContext, LoadingContext, ProductContext } from './Contexts'
 import { useCart } from './hooks'
 
 
 function App() {
   const cart = useCart()
   const [products, setProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products')
+        fetch('https://fakestoreapi.com/products')
         .then(response => response.json())
-        .then(data => setProducts(data))
-        .catch(error => error)
+        .then(data => {
+          setProducts(data)
+          setIsLoading(false)
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+          setIsLoading(false)
+          
+        })
     },[])
   return (
     <>
-      <ProductContext value={products}>
-        <CartContext value={cart}>
-          <Nav />
-            <Outlet />
-        </CartContext>
-      </ProductContext>
+      <LoadingContext value={isLoading}>
+        <ProductContext value={products}>
+          <CartContext value={cart}>
+            <Nav />
+              <Outlet />
+          </CartContext>
+        </ProductContext>
+      </LoadingContext>
     </>
   )
 }
