@@ -3,7 +3,7 @@ import Cart from "./Cart/Cart"
 import ErrorPage from "./ErrorPage/ErrorPage"
 import HomePage from "./HomePage/HomePage"
 import Shop from "./Shop/Shop"
-import { Contact } from "./Contact"
+import { Contact } from "./ContactUs/Contact"
 
 const routes = [
     {
@@ -26,11 +26,11 @@ const routes = [
                 element: <Cart />,
                 errorElement: <ErrorPage />
             },
-            // {
-            //     path:'/contactUs',
-            //     element: <Contact />,
-            //     errorElement: <ErrorPage />
-            // }
+            {
+                path:'/contactUs',
+                element: <Contact />,
+                errorElement: <ErrorPage />
+            }
         ]
     },
 ]
